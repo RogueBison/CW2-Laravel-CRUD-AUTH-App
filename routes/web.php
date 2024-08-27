@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseworkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/crud/items', [CourseworkController::class, 'list']);
+
+Route::get('/crud/create', [CourseworkController::class, 'create']); 
+
+Route::post('/crud/items', [CourseworkController::class, 'store']); 
+
+Route::post('uploads', [CourseworkController::class, 'uploads']);
+
+Route::delete('/crud/delete/{record}', [CourseworkController::class, 'destroy']);
+
+Route::get('/crud/{record}/edit', [CourseworkController::class, 'edit']);
+
+/* Route::get('/crud/{record}/{originalName?}', [CourseworkController::class, 'show']); */
+
+Route::put('/crud/{record}', [CourseworkController::class, 'update']); 
+
+Route::get('/crud/{record}/{slug}', [CourseworkController::class, 'singleRecord']);
+
+
